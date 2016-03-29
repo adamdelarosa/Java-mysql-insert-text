@@ -12,6 +12,8 @@ public class Main {
     static final String DATABASE_URL = "jdbc:mysql://localhost/TEXTDATA";
     static final String USERNAME = "username";
     static final String PASSWORD = "password";
+    String message = "hello there";
+
 
 
     public static void main(String args[]){
@@ -49,8 +51,10 @@ public class Main {
             stmt.executeUpdate(sql);*/
 
             //add record
-            sql = "INSERT INTO TEXT_DATA_TABLE " +  "VALUES (Hello, world!)";
+
+            sql = "INSERT INTO TEXT_DATA_TABLE " +  "VALUES ('hello adam')";
             stmt.executeUpdate(sql);
+
 
 
 
