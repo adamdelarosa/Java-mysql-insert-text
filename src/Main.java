@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * Created by ROSA on 3/28/16.
@@ -43,18 +40,24 @@ public class Main {
             String sql = null;
 
             //Create DB:
-/*            sql = "CREATE DATABASE TEXTDATA";
+/           /*sql = "CREATE DATABASE TEXTDATA";
             stmt.executeUpdate(sql);*/
 
-/*            //Create Table:
-            sql = "CREATE TABLE TEXT_DATA_TABLE " + "(TEXT BLOB(1000))";
+/           //Create Table:
+            /*sql = "CREATE TABLE TEXT_DATA_TABLE " + "(TEXT BLOB(1000))";
             stmt.executeUpdate(sql);*/
 
             //add record
+/           /*sql = "INSERT INTO TEXT_DATA_TABLE " +  "VALUES ('hello adam')";
+            stmt.executeUpdate(sql);*/
+
+            PreparedStatement preparedStatementForText = conn.prepareStatement("INSERT INTO TEXT_DATA_TABLE " +  "VALUES ('hello update')");
+            preparedStatementForText.executeUpdate();
+
+
 
             sql = "INSERT INTO TEXT_DATA_TABLE " +  "VALUES ('hello adam')";
             stmt.executeUpdate(sql);
-
 
 
 
