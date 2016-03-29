@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.Calendar;
 
 /**
  * Created by ROSA on 3/28/16.
@@ -9,7 +10,8 @@ public class Main {
     static final String DATABASE_URL = "jdbc:mysql://localhost/TEXTDATA";
     static final String USERNAME = "username";
     static final String PASSWORD = "password";
-    String message = "hello there";
+    private static String textMessageData = "Hey there :)";
+    int n = 2;
 
 
 
@@ -21,9 +23,16 @@ public class Main {
     public static void printer(){
         System.out.println("Hello");
     }
+
+
     public static void mysqlInsert(){
         Connection conn = null;
         Statement stmt = null;
+
+        // create a sql date object so we can use it in our INSERT statement
+        Calendar calendar = Calendar.getInstance();
+        java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+
         try{
             //Register JDBC driver
             Class.forName("com.mysql.jdbc.Driver");
@@ -40,24 +49,33 @@ public class Main {
             String sql = null;
 
             //Create DB:
-/           /*sql = "CREATE DATABASE TEXTDATA";
+            /*sql = "CREATE DATABASE TEXTDATA";
             stmt.executeUpdate(sql);*/
 
-/           //Create Table:
+            //Create Table:
             /*sql = "CREATE TABLE TEXT_DATA_TABLE " + "(TEXT BLOB(1000))";
             stmt.executeUpdate(sql);*/
 
             //add record
-/           /*sql = "INSERT INTO TEXT_DATA_TABLE " +  "VALUES ('hello adam')";
+            /*sql = "INSERT INTO TEXT_DATA_TABLE " +  "VALUES ('hello adam')";
             stmt.executeUpdate(sql);*/
 
-            PreparedStatement preparedStatementForText = conn.prepareStatement("INSERT INTO TEXT_DATA_TABLE " +  "VALUES ('hello update')");
-            preparedStatementForText.executeUpdate();
+            //ADD TEXT DATA IN REAL - TIME.
 
 
+            // the mysql insert statement
+            String query = " insert into TEXT_DATA_TABLE (TEXT)" + " values (?)";
 
-            sql = "INSERT INTO TEXT_DATA_TABLE " +  "VALUES ('hello adam')";
-            stmt.executeUpdate(sql);
+            String friend = "Hello";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setString (1, textMessageData);
+            // preparedStmt.setDate   (2, startDate);
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
 
 
 
