@@ -11,19 +11,10 @@ public class Main {
     static final String USERNAME = "username";
     static final String PASSWORD = "password";
     private static String textMessageData = "Hey there :)";
-    int n = 2;
-
-
 
     public static void main(String args[]){
-        printer();
         mysqlInsert();
     }
-
-    public static void printer(){
-        System.out.println("Hello");
-    }
-
 
     public static void mysqlInsert(){
         Connection conn = null;
@@ -53,25 +44,20 @@ public class Main {
             stmt.executeUpdate(sql);*/
 
             //Create Table:
-            /*sql = "CREATE TABLE TEXT_DATA_TABLE " + "(TEXT BLOB(1000))";
+            /*sql = "CREATE TABLE TEXT_DATA_TABLE " + "(DATE DATE , TEXT BLOB(1000))";
             stmt.executeUpdate(sql);*/
 
-            //add record
+            //add record for text
             /*sql = "INSERT INTO TEXT_DATA_TABLE " +  "VALUES ('hello adam')";
             stmt.executeUpdate(sql);*/
 
             //ADD TEXT DATA IN REAL - TIME.
-
-
-            // the mysql insert statement
-            String query = " insert into TEXT_DATA_TABLE (TEXT)" + " values (?)";
-
-            String friend = "Hello";
+            String query = " insert into TEXT_DATA_TABLE (DATE , TEXT)" + " values (?,?)";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setString (1, textMessageData);
-            // preparedStmt.setDate   (2, startDate);
+            preparedStmt.setDate   (1, startDate);
+            preparedStmt.setString (2, textMessageData);
 
             // execute the preparedstatement
             preparedStmt.execute();
