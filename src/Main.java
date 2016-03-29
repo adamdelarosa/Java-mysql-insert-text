@@ -23,6 +23,7 @@ public class Main {
         // create a sql date object so we can use it in our INSERT statement
         Calendar calendar = Calendar.getInstance();
         java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+        java.sql.Time stertTime = new java.sql.Time(calendar.getTime().getTime());
 
         try{
             //Register JDBC driver
@@ -44,23 +45,21 @@ public class Main {
             stmt.executeUpdate(sql);*/
 
             //Create Table:
-            /*sql = "CREATE TABLE TEXT_DATA_TABLE " + "(DATE DATE , TEXT BLOB(1000))";
-            stmt.executeUpdate(sql);*/
-
-            //add record for text
-            /*sql = "INSERT INTO TEXT_DATA_TABLE " +  "VALUES ('hello adam')";
-            stmt.executeUpdate(sql);*/
+            sql = "CREATE TABLE TEXT_DATA_TABLE " + "(DATE DATE ,TIME TIME , TEXT BLOB(1000))";
+            stmt.executeUpdate(sql);
 
             //ADD TEXT DATA IN REAL - TIME.
-            String query = " insert into TEXT_DATA_TABLE (DATE , TEXT)" + " values (?,?)";
+            String query = " insert into TEXT_DATA_TABLE (DATE , TIME , TEXT)" + " values (?,?,?)";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setDate   (1, startDate);
-            preparedStmt.setString (2, textMessageData);
+            preparedStmt.setDate (1, startDate);
+            preparedStmt.setTime (2, stertTime);
+            preparedStmt.setString (3, textMessageData);
 
             // execute the preparedstatement
             preparedStmt.execute();
+            System.out.println(startDate);
 
 
 
