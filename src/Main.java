@@ -41,24 +41,20 @@ public class Main {
             String sql = null;
 
             //Create DB:
-            /* sql = "CREATE DATABASE TEXTDATA";
+/*            sql = "CREATE DATABASE TEXTDATA";
             stmt.executeUpdate(sql);*/
 
-            //Create Table:
+/*            //Create Table:
             sql = "CREATE TABLE TEXT_DATA_TABLE " + "(TEXT BLOB(1000))";
-            stmt.executeUpdate(sql);
+            stmt.executeUpdate(sql);*/
 
             //add record
-            //sql = "INSERT INTO Registration " +  "VALUES (102, 'Zaid', 'Khan', 30)";
-            //stmt.executeUpdate(sql);
+            sql = "INSERT INTO TEXT_DATA_TABLE " +  "VALUES (Hello, world!)";
+            stmt.executeUpdate(sql);
 
 
 
             System.out.println("Database.");
-
-
-
-            System.out.println("Inserted records into the table...");
 
         }catch(SQLException se){
             se.printStackTrace();
